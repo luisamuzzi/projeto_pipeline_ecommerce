@@ -1,0 +1,14 @@
+[project]
+name = "projeto-pipeline-ecommerce"
+version = "0.1.0"
+description = "Criação e automação de um pipeline de dados para e-commerce."
+readme = "README.md"
+requires-python = ">=3.11.9"
+dependencies = [
+    "apache-airflow==2.8.1",
+    "dbt-core==1.9.0",
+    "dbt-postgres==1.9.0",
+    "faker>=38.2.0",
+    "pandas>=2.3.3",
+    "python-dotenv>=1.2.1",
+]
