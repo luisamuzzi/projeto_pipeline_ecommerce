@@ -2,7 +2,6 @@ import os
 from datetime import timedelta, datetime
 from dotenv import load_dotenv
 from airflow import DAG
-from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
 
 # Carregar variáveis de ambiente do aequivo .env
@@ -11,10 +10,6 @@ load_dotenv()
 # Armazenar variáveis de ambiente
 SCRIPTS_PATH = os.getenv('SCRIPTS_PATH')
 DBT_DIR = os.getenv('DBT_DIR')
-
-# Criar função para gerar dados fake
-def generate_data():
-    os.system(f'python {SCRIPTS_PATH}generate_fake_data.py')
 
 default_args = {
     'owner': 'Luisa',
@@ -31,9 +26,9 @@ with DAG(
     tags=['ecommerce', 'analytics', 'dbt', 'churn']
 ) as dag:
     #--------------- task 01: gerar os dados fake ---------------
-    t1_generate_data = PythonOperator(
+    t1_generate_data = BashOperator(
         task_id = 'generate_fake_data',
-        python_callable = generate_data
+        bash_command = f'python {os.path.join(SCRIPTS_PATH, 'generate_fake_data.py')}'
     )
 
     #--------------- task 02: executar o dbt seed ---------------

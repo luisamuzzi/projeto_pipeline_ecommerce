@@ -8,7 +8,7 @@ dependencies = [
     "apache-airflow==2.8.1",
     "dbt-core==1.9.0",
     "dbt-postgres==1.9.0",
-    "faker>=38.2.0",
+    "faker>=39.0.0",
     "pandas>=2.3.3",
     "python-dotenv>=1.2.1",
 ]
